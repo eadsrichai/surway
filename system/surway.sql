@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Nov 27, 2023 at 10:33 AM
+-- Generation Time: Nov 27, 2023 at 02:59 PM
 -- Server version: 10.10.2-MariaDB
 -- PHP Version: 8.0.26
 
@@ -24,17 +24,20 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ans`
+-- Table structure for table `answer`
 --
 
-DROP TABLE IF EXISTS `ans`;
-CREATE TABLE IF NOT EXISTS `ans` (
-  `id_ans` int(11) NOT NULL AUTO_INCREMENT,
-  `id_ch` int(11) NOT NULL,
+DROP TABLE IF EXISTS `answer`;
+CREATE TABLE IF NOT EXISTS `answer` (
+  `id_answer` int(11) NOT NULL AUTO_INCREMENT,
+  `id_topic` int(11) NOT NULL,
+  `id_question` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  PRIMARY KEY (`id_ans`),
-  KEY `id_topic` (`id_ch`),
-  KEY `id_user` (`id_user`)
+  `user_ans` varchar(200) NOT NULL,
+  PRIMARY KEY (`id_answer`),
+  KEY `id_topic` (`id_question`),
+  KEY `id_user` (`id_user`),
+  KEY `id_topic_2` (`id_topic`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -61,11 +64,27 @@ CREATE TABLE IF NOT EXISTS `choice` (
 DROP TABLE IF EXISTS `question`;
 CREATE TABLE IF NOT EXISTS `question` (
   `id_q` int(11) NOT NULL AUTO_INCREMENT,
-  `title_q` varchar(100) NOT NULL,
   `id_topic` int(10) NOT NULL,
+  `title_q` varchar(100) NOT NULL,
+  `ch1_q` varchar(200) NOT NULL,
+  `ch2_q` varchar(200) NOT NULL,
+  `ch3_q` varchar(200) NOT NULL,
+  `ch4_q` varchar(200) NOT NULL,
   PRIMARY KEY (`id_q`),
   KEY `id_topic` (`id_topic`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `question`
+--
+
+INSERT INTO `question` (`id_q`, `id_topic`, `title_q`, `ch1_q`, `ch2_q`, `ch3_q`, `ch4_q`) VALUES
+(7, 3, 'ท่านคิดว่าโทรศัพท์ยี่ห้อใดน่าสนใจมากที่', 'Iphone', 'Sumsung', 'Nokie', 'Huewei'),
+(8, 3, 'ท่านคิดว่าราคาโทรศัพท์ที่เหมาะสมกับการใช้งานของท่านควรมีราคาในช่วงใด', 'ไม่เกิน 10,000 บาท', 'ไม่เกิน 15,000 บาท', 'ไม่เกิน 20,000 บาท', 'ราคา 20,000 บาทขึ้นไป'),
+(9, 3, 'ท่านคิดว่าหน่วยความจำสำหรับการบันทึกข้อมูลในโทรศัพย์ควรมีเท่าไร', '64 GB', '128 GB', '256 GB', '512 GB'),
+(10, 9, 'ในแต่ละวันท่านใช้งานอินเทอร์เน็ตจำนวนกี่ชั่วโมง', 'น้อยกว่า 2 ชั่วโมงต่อวัน', 'ประมาณ 4 ชั่วโมงต่อวัน', 'ประมาณ 8 ชั่วโมงต่อวัน', 'มากกว่า 8 ชั่วโมงต่อวัน'),
+(11, 9, 'ท่านใช้งานอินเทอร์เน็ตในเรื่องใด', 'เล่นเกมส์ออนไลน์', 'ทำงานวิจัย', 'ค้นคว้าหาความรู้ต่าง ๆ', 'ความบันเทิง ดูหนัง ฟังเพลง'),
+(12, 9, 'ท่านใช้งานอินเทอร์เน็ตผ่านอุปกรณ์ใดมากที่สุด', 'โทรศัพย์', 'เท็บเล็ต', 'คอมพิวเตอร์พกพา', 'เครื่องคอมพิวเตอร์ตั้งโต๊ะ');
 
 -- --------------------------------------------------------
 
@@ -101,14 +120,15 @@ CREATE TABLE IF NOT EXISTS `topic` (
   `detail_topic` varchar(250) NOT NULL,
   `status_topic` varchar(1) NOT NULL,
   PRIMARY KEY (`id_topic`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `topic`
 --
 
 INSERT INTO `topic` (`id_topic`, `name_topic`, `detail_topic`, `status_topic`) VALUES
-(3, 'ความพึงพอใจในการใช้ห้องคอมพิวเตอร์', 'ความพึงพอใจในการใช้ห้องคอมพิวเตอร์ วิทยาลัยเทคนิคพังงา', '1');
+(3, 'ความต้องการใช้งานโทรศัพท์', 'ความต้องการใช้งานโทรศัพท์ในชีวิตประจำวัน', '1'),
+(9, 'การใช้งานอินเทอร์เน็ต', 'การใช้งานอินเทอร์เน็ตในชีวิตประจำวัน', '1');
 
 -- --------------------------------------------------------
 
@@ -146,11 +166,11 @@ INSERT INTO `user` (`id_user`, `u_user`, `p_user`, `pre_user`, `fname_user`, `ln
 --
 
 --
--- Constraints for table `ans`
+-- Constraints for table `answer`
 --
-ALTER TABLE `ans`
-  ADD CONSTRAINT `ans_ibfk_3` FOREIGN KEY (`id_ch`) REFERENCES `choice` (`id_ch`),
-  ADD CONSTRAINT `ans_ibfk_4` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+ALTER TABLE `answer`
+  ADD CONSTRAINT `answer_ibfk_3` FOREIGN KEY (`id_question`) REFERENCES `choice` (`id_ch`),
+  ADD CONSTRAINT `answer_ibfk_4` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
 -- Constraints for table `choice`
