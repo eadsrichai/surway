@@ -12,6 +12,6 @@
         exit;
     }
 
-    header( "location: index.php?menu=3" );   
+    header( "location: index.php?menu=1" );   
     exit(0);
 ?>
