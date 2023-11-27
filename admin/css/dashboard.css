@@ -49,6 +49,17 @@
 .main-data {
     padding: 20px;
 }
+
+.surway-show {
+    width: 700px;
+    background-color: rgb(142, 179, 214);
+    list-style-type: none;
+}
+.surway-show > li{
+    list-style-type: none;
+   
+}
+
 .footer {
     text-align: center;
     padding: 10px;

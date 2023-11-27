@@ -21,7 +21,8 @@
             <?php echo $row['id_topic'];  ?>
         </td>
         <td>
-            <?php echo $row['name_topic'];  ?>
+            <?php  $id_topic = $row['id_topic']; ?>
+            <a href="index.php?menu=4&id_topic=<?php echo $id_topic; ?>&name_topic=<?php echo $row['name_topic']; ?>"><?php echo $row['name_topic']; ?></a>
         </td>
         <td>
             <?php echo $row['detail_topic'];  ?>
