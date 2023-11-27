@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Nov 26, 2023 at 01:39 PM
+-- Generation Time: Nov 27, 2023 at 10:33 AM
 -- Server version: 10.10.2-MariaDB
 -- PHP Version: 8.0.26
 
@@ -108,11 +108,7 @@ CREATE TABLE IF NOT EXISTS `topic` (
 --
 
 INSERT INTO `topic` (`id_topic`, `name_topic`, `detail_topic`, `status_topic`) VALUES
-(3, 'ความพึงพอใจในการใช้ห้องคอมพิวเตอร์', 'ความพึงพอใจในการใช้ห้องคอมพิวเตอร์ วิทยาลัยเทคนิคพังงา', '1'),
-(5, 'xxxx', 'yyy', '1'),
-(6, 'aa', 'bbbb', '1'),
-(7, 'www', 'tttt', '1'),
-(8, 'www', 'tttt', '1');
+(3, 'ความพึงพอใจในการใช้ห้องคอมพิวเตอร์', 'ความพึงพอใจในการใช้ห้องคอมพิวเตอร์ วิทยาลัยเทคนิคพังงา', '1');
 
 -- --------------------------------------------------------
 
@@ -125,22 +121,25 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `u_user` varchar(30) NOT NULL,
   `p_user` varchar(30) NOT NULL,
+  `pre_user` varchar(10) NOT NULL,
   `fname_user` varchar(50) NOT NULL,
   `lname_user` varchar(50) NOT NULL,
   `email_user` varchar(30) NOT NULL,
   `tel_user` varchar(12) NOT NULL,
   `id_role` varchar(2) NOT NULL,
+  `status_user` varchar(1) NOT NULL,
   PRIMARY KEY (`id_user`),
   KEY `id_user` (`id_user`,`id_role`),
   KEY `id_role` (`id_role`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id_user`, `u_user`, `p_user`, `fname_user`, `lname_user`, `email_user`, `tel_user`, `id_role`) VALUES
-(1, 'user1', '1234', 'วุฒิวงศ์', 'เอียดศรีชาย', 'xx@gmail.com', '0926124435', '2');
+INSERT INTO `user` (`id_user`, `u_user`, `p_user`, `pre_user`, `fname_user`, `lname_user`, `email_user`, `tel_user`, `id_role`, `status_user`) VALUES
+(2, 'user1', '2222', 'นาย', 'วุฒิวงศ์x', 'เอียดศรีชาย', 'wutkmutt@gmail.com', '0926124435', '1', '1'),
+(3, 'user2', '1111', 'นาย', 'supermanxxxx', 'blackjack', 'wutkmutt@gmail.com', '0926124435', '2', '1');
 
 --
 -- Constraints for dumped tables
