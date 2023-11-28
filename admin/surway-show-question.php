@@ -36,5 +36,5 @@
         }
         ?>
         </ul>
-    <input type="submit" value="ส่งแบบสอบถาม" name="submit"/>
+   
     </form>

@@ -1,14 +1,8 @@
 
 <?php
-    if(isset($_GET['submit']) && $_GET['submit'] == "ค้นหาข้อมูลตามชื่อแบบสำรวจ") {
-        $name_topic = $_GET['name_topic'];
         $sql = "SELECT  id_topic,name_topic,detail_topic,status_topic
-                FROM topic
-                WHERE name_topic like '%$name_topic%'";
-    }else {
-        $sql = "SELECT  id_topic,name_topic,detail_topic,status_topic
-                FROM topic";
-    }
+                FROM topic WHERE status_topic like '1'";
+    
     include_once('../system/db.php');
     
     $result = $conn->query($sql);

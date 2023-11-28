@@ -11,10 +11,10 @@
 
 
     include_once('../system/db.php');
-    $sql = "INSERT INTO answer(id_answer,id_topic,id_question,id_user,user_ans)
-            VALUES(NULL,'$id_topic','$id_question1','$id_user','$user_ans1'),
-                  (NULL,'$id_topic','$id_question2','$id_user','$user_ans2'),
-                  (NULL,'$id_topic','$id_question3','$id_user','$user_ans3')";
+    $sql = "INSERT INTO answer(id_answer,id_topic,id_question,id_user,user_ans,status_answer)
+            VALUES(NULL,'$id_topic','$id_question1','$id_user','$user_ans1','1'),
+                  (NULL,'$id_topic','$id_question2','$id_user','$user_ans2','1'),
+                  (NULL,'$id_topic','$id_question3','$id_user','$user_ans3','1')";
 
     $stmt = $conn->prepare($sql);
     if (!$stmt->execute()) {
