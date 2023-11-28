@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Nov 27, 2023 at 02:59 PM
+-- Generation Time: Nov 28, 2023 at 09:57 AM
 -- Server version: 10.10.2-MariaDB
 -- PHP Version: 8.0.26
 
@@ -38,7 +38,19 @@ CREATE TABLE IF NOT EXISTS `answer` (
   KEY `id_topic` (`id_question`),
   KEY `id_user` (`id_user`),
   KEY `id_topic_2` (`id_topic`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `answer`
+--
+
+INSERT INTO `answer` (`id_answer`, `id_topic`, `id_question`, `id_user`, `user_ans`) VALUES
+(13, 3, 7, 3, 'Iphone'),
+(14, 3, 8, 3, 'ราคา 20,000 บาทขึ้นไป'),
+(15, 3, 9, 3, '512 GB'),
+(16, 9, 10, 3, 'น้อยกว่า 2 ชั่วโมงต่อวัน'),
+(17, 9, 11, 3, 'ทำงานวิจัย'),
+(18, 9, 12, 3, 'โทรศัพย์');
 
 -- --------------------------------------------------------
 
@@ -72,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `question` (
   `ch4_q` varchar(200) NOT NULL,
   PRIMARY KEY (`id_q`),
   KEY `id_topic` (`id_topic`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `question`
@@ -84,7 +96,13 @@ INSERT INTO `question` (`id_q`, `id_topic`, `title_q`, `ch1_q`, `ch2_q`, `ch3_q`
 (9, 3, 'ท่านคิดว่าหน่วยความจำสำหรับการบันทึกข้อมูลในโทรศัพย์ควรมีเท่าไร', '64 GB', '128 GB', '256 GB', '512 GB'),
 (10, 9, 'ในแต่ละวันท่านใช้งานอินเทอร์เน็ตจำนวนกี่ชั่วโมง', 'น้อยกว่า 2 ชั่วโมงต่อวัน', 'ประมาณ 4 ชั่วโมงต่อวัน', 'ประมาณ 8 ชั่วโมงต่อวัน', 'มากกว่า 8 ชั่วโมงต่อวัน'),
 (11, 9, 'ท่านใช้งานอินเทอร์เน็ตในเรื่องใด', 'เล่นเกมส์ออนไลน์', 'ทำงานวิจัย', 'ค้นคว้าหาความรู้ต่าง ๆ', 'ความบันเทิง ดูหนัง ฟังเพลง'),
-(12, 9, 'ท่านใช้งานอินเทอร์เน็ตผ่านอุปกรณ์ใดมากที่สุด', 'โทรศัพย์', 'เท็บเล็ต', 'คอมพิวเตอร์พกพา', 'เครื่องคอมพิวเตอร์ตั้งโต๊ะ');
+(12, 9, 'ท่านใช้งานอินเทอร์เน็ตผ่านอุปกรณ์ใดมากที่สุด', 'โทรศัพย์', 'เท็บเล็ต', 'คอมพิวเตอร์พกพา', 'เครื่องคอมพิวเตอร์ตั้งโต๊ะ'),
+(19, 15, 'นกมีกี่ขา', '2', '3', '4', '5'),
+(20, 15, '2+3 =', '5', '6', '8', '5'),
+(21, 15, '10+20 =', '100', '200', '300', '400'),
+(22, 16, 'sfsdf', 'sfsdf', 'sdfsdfs', 'sdfsdf', 'sdfsdf'),
+(23, 16, 'sdfsdf', 'sdfdsf', 'sdfsd', 'sdfsd', 'sdfsdf'),
+(25, 16, 'ยี่ห้อโทรศัพท์ที่ท่านใช้อยู่ในปัจจุบัน', 'Iphone', 'Samsung', 'sfsdf', 'sdfdsf');
 
 -- --------------------------------------------------------
 
@@ -120,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `topic` (
   `detail_topic` varchar(250) NOT NULL,
   `status_topic` varchar(1) NOT NULL,
   PRIMARY KEY (`id_topic`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `topic`
@@ -128,7 +146,9 @@ CREATE TABLE IF NOT EXISTS `topic` (
 
 INSERT INTO `topic` (`id_topic`, `name_topic`, `detail_topic`, `status_topic`) VALUES
 (3, 'ความต้องการใช้งานโทรศัพท์', 'ความต้องการใช้งานโทรศัพท์ในชีวิตประจำวัน', '1'),
-(9, 'การใช้งานอินเทอร์เน็ต', 'การใช้งานอินเทอร์เน็ตในชีวิตประจำวัน', '1');
+(9, 'การใช้งานอินเทอร์เน็ต', 'การใช้งานอินเทอร์เน็ตในชีวิตประจำวัน', '1'),
+(15, 'ปปปป', 'หกดหกดหกดหก', '1'),
+(16, 'gfhfghgf', 'dfgfgfs', '0');
 
 -- --------------------------------------------------------
 
@@ -158,8 +178,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id_user`, `u_user`, `p_user`, `pre_user`, `fname_user`, `lname_user`, `email_user`, `tel_user`, `id_role`, `status_user`) VALUES
-(2, 'user1', '2222', 'นาย', 'วุฒิวงศ์x', 'เอียดศรีชาย', 'wutkmutt@gmail.com', '0926124435', '1', '1'),
-(3, 'user2', '1111', 'นาย', 'supermanxxxx', 'blackjack', 'wutkmutt@gmail.com', '0926124435', '2', '1');
+(2, 'user1', '2222', 'นาย', 'วุฒิวงศ์', 'เอียดศรีชาย', 'wutkmutt@gmail.com', '0926124435', '1', '1'),
+(3, 'user2', '1111', 'นาย', 'superman', 'blackjack', 'wutkmutt@gmail.com', '0926124435', '2', '1');
 
 --
 -- Constraints for dumped tables
@@ -169,20 +189,14 @@ INSERT INTO `user` (`id_user`, `u_user`, `p_user`, `pre_user`, `fname_user`, `ln
 -- Constraints for table `answer`
 --
 ALTER TABLE `answer`
-  ADD CONSTRAINT `answer_ibfk_3` FOREIGN KEY (`id_question`) REFERENCES `choice` (`id_ch`),
-  ADD CONSTRAINT `answer_ibfk_4` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
-
---
--- Constraints for table `choice`
---
-ALTER TABLE `choice`
-  ADD CONSTRAINT `choice_ibfk_1` FOREIGN KEY (`id_q`) REFERENCES `question` (`id_q`);
+  ADD CONSTRAINT `answer_ibfk_4` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`),
+  ADD CONSTRAINT `answer_ibfk_5` FOREIGN KEY (`id_question`) REFERENCES `question` (`id_q`);
 
 --
 -- Constraints for table `question`
 --
 ALTER TABLE `question`
-  ADD CONSTRAINT `question_ibfk_1` FOREIGN KEY (`id_topic`) REFERENCES `topic` (`id_topic`);
+  ADD CONSTRAINT `question_ibfk_1` FOREIGN KEY (`id_topic`) REFERENCES `topic` (`id_topic`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user`

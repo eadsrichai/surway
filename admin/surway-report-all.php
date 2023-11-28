@@ -1,3 +1,16 @@
+<form action="index.php" method="GET">
+<table>
+    <tr>
+        <td>
+            <input type="hidden" value="1" name="menu"/>
+            <input type="search" value="" name="name_topic"/>
+            <input type="submit" value="ค้นหาข้อมูลตามชื่อแบบสำรวจ"  name="submit"/>
+        </td>
+    </tr>
+</table>
+</form>
+
+<hr>
 
 <?php
     if(isset($_GET['submit']) && $_GET['submit'] == "ค้นหาข้อมูลตามชื่อแบบสำรวจ") {
@@ -17,10 +30,8 @@
     <tr>
         <td>รหัสแบบสำรวจ</td>
         <td>ชื่อแบบสำรวจ</td>
+        <td>รายละเอียดแบบสำรวจ</td>
         <td>สถานะแบบสำรวจ</td>
-        <td>ควบคุมเปิดปิดแบบสำรวจ</td>
-        <td></td>
-        <td></td>
     </tr>
 
     <?php
@@ -34,7 +45,9 @@
             <?php  $id_topic = $row['id_topic']; ?>
             <a href="index.php?menu=4&id_topic=<?php echo $id_topic; ?>&name_topic=<?php echo $row['name_topic']; ?>"><?php echo $row['name_topic']; ?></a>
         </td>
-       
+        <td>
+            <?php echo $row['detail_topic'];  ?>
+        </td>
         <td>
             <?php 
                 $status_topic = $row['status_topic']; 
@@ -47,21 +60,6 @@
                 echo $message;
             ?>
         </td>
-        <td>
-            <form action="surway-control-on-off.php" method="GET">
-                
-                <?php if($status_topic == "1"){ ?>
-                    <input type="hidden" value="<?php echo $id_topic ?>" name="id_topic"/>
-                    <input type="hidden" value="0" name="status_topic"/>
-                    <input type="submit" value="ปิด" name="submit"/>
-                    <?php } else {?>
-                        <input type="hidden" value="1" name="status_topic"/>
-                        <input type="submit" value="เปิด" name="submit"/>
-                    <?php } ?>
-            </form>
-        </td>
-        <td><a href="surway-delete.php?id_topic=<?php echo $id_topic;  ?>">Delete</a></td>
-        <td><a href="">Update</a></td>
     </tr>
     <?php
         }
@@ -69,4 +67,19 @@
 
     
    </table>
+   <hr>
+   <div>
+        <p>รายงานข้อมูลแบบสำรวจทั้งหมด</p>
+       
+   <?php
+        $sql = "SELECT COUNT(id_topic) as amount FROM topic";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            if ($row = $result->fetch_assoc()) {  ?>
+                 <label>แบบสำรวจทั้งหมดมี <?php echo $row['amount'];  ?> แบบสำรวจ</label>
+                 <?php
+            }
+        }
+    ?>
    
+   </div>

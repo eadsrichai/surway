@@ -1,6 +1,46 @@
+<?php $id_topic = $_GET['id_topic'];  ?>
+<div>
+    <form action="surway-create.php" method="GET">
+    <input type="hidden" value="<?php echo $id_topic; ?>" name="id_topic" />
+    <table>
+        <tr>
+            <td>คำถาม</td>
+            <td><input type="text" size="100" name="title_q" /></td>
+        </tr>
+        <tr>
+            <td>คำตอบ</td>
+            <td><input type="text" size="50" name="ch1_q" /></td>
+        </tr>
+        <tr>
+            <td>คำตอบ</td>
+            <td><input type="text" size="50" name="ch2_q" /></td>
+        </tr>
+        <tr>
+            <td>คำตอบ</td>
+            <td><input type="text" size="50" name="ch3_q" /></td>
+        </tr>
+        <tr>
+            <td>คำตอบ</td>
+            <td><input type="text" size="50" name="ch4_q" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="บันทึกแบบสำรวจ" name="submit-save" />
+                
+            </td>
+        </tr>
+    </table>
+    </form>
+    <form action="index.php?menu=1" method="GET">
+        <input type="hidden" value="1" name="menu"/>
+        <input type="submit" value="สิ้นสุดการบันทึกแบบสำรวจ" name="submit" />
+    </form>
+</div>
+<div>
 <?php
     $id_topic = $_GET['id_topic'];
-    $name_topic = $_GET['name_topic'];
+    // $name_topic = $_GET['name_topic'];
     include_once('../system/db.php');
     $sql = "SELECT  t.id_topic,t.name_topic,t.detail_topic,t.status_topic,q.id_q,
             q.title_q,q.ch1_q,q.ch2_q,q.ch3_q,q.ch4_q
@@ -12,9 +52,9 @@
    
     ?>
     <div>
-        <p style="font-size: 32px;">แบบสำรวจ <?php  echo $name_topic; ?></p>
+        <!-- <p style="font-size: 32px;">แบบสำรวจ <?php  echo $name_topic; ?></p> -->
     </div>
-    <form action="surway-answer-question.php" method="GET">
+    
         <ul class="surway-show">
         <?php
         
@@ -36,5 +76,5 @@
         }
         ?>
         </ul>
-    <input type="submit" value="ส่งแบบสอบถาม" name="submit"/>
-    </form>
+    
+</div>

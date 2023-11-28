@@ -12,6 +12,16 @@
         exit;
     }
 
-    header( "location: index.php?menu=1" );   
+    $sql = "SELECT  MAX(id_topic) as id_topic
+    FROM    topic";
+    $id_topic;
+    $result = $conn->query($sql);
+        if ($row = $result->fetch_assoc()) { 
+            $id_topic = $row['id_topic'];
+        }
+
+
+
+    header( "location: index.php?menu=5&id_topic=$id_topic");   
     exit(0);
 ?>
