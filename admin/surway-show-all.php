@@ -55,6 +55,7 @@
                     <input type="hidden" value="0" name="status_topic"/>
                     <input type="submit" value="ปิด" name="submit"/>
                     <?php } else {?>
+                        <input type="hidden" value="<?php echo $id_topic ?>" name="id_topic"/>
                         <input type="hidden" value="1" name="status_topic"/>
                         <input type="submit" value="เปิด" name="submit"/>
                     <?php } ?>
